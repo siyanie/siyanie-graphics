@@ -1,0 +1,42 @@
+{
+  "name": "siyanie-graphics",
+  "version": "1.0.0",
+  "description": "Graphics for siyanie app",
+  "main": "index.js",
+  "scripts": {
+    "svg": "rm -rf build && npm run svgo && node minify.js && npm run sprite",
+    "sprite": "node sprite.js",
+    "svgo": "svgo --folder='src/icons/' --output='build/icons/' --pretty",
+    "site": "npm run site:template && npm run site:scripts",
+    "site:template": "node site",
+    "site:scripts": "webpack src/script.js docs/script.js",
+    "test": "ava && eslint **.js",
+    "eslint": "eslint '{.,src}/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siyanie/siyanie-graphics.git"
+  },
+  "keywords": [
+    "graphics",
+    "design",
+    "icons"
+  ],
+  "author": "alanev <e@alanev.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/siyanie/siyanie-graphics/issues"
+  },
+  "homepage": "https://github.com/siyanie/siyanie-graphics#readme",
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "cheerio": "^0.20.0",
+    "eslint": "^3.3.1",
+    "glob": "^7.0.5",
+    "svgo": "^0.6.6",
+    "webpack": "^1.13.2"
+  },
+  "dependencies": {
+    "clipboard": "^1.5.12"
+  }
+}
