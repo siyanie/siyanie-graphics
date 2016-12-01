@@ -12,11 +12,13 @@ const tml = (preview, name) =>
 const getIcon = (path) => {
 	return new Promise(resolve => {
 		readFile(path, (err, data) => {
-			const { name } = parse(path)
 			const preview = data.toString()
-			const icon = tml(preview, name)
+			let { name } = parse(path)
 
-			resolve(icon)
+			if (/\.clip$/.test(name))
+				name = name.replace(/\.clip$/, '')
+
+			resolve(tml(preview, name))
 		})
 	})
 }

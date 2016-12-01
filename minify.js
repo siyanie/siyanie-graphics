@@ -8,7 +8,10 @@ glob('build/icons/*.svg', (err, paths) => {
 		readFile(path, (err, data) => {
 			const $ = cheerio.load(data)
 			const svg = $('svg')
-			const { name } = parse(path)
+			let { name } = parse(path)
+
+			if (/\.clip$/.test(name))
+				name = name.replace(/\.clip$/, '')
 
 			svg
 				.attr('id', `icon--${name}`)
